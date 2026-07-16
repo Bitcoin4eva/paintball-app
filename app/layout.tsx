@@ -3,11 +3,16 @@ import "./globals.css";
 import { AppStateProvider } from "./providers";
 import { BottomNav } from "@/components/BottomNav";
 
+// Set at build time by the deploy workflow (e.g. "/paintball-app" on GitHub Pages).
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Lean In — Paintball Performance",
   description:
     "8-week paintball performance program: speed, first-step explosiveness, bunker transitions, and heart-rate control.",
   applicationName: "Lean In",
+  manifest: `${basePath}/manifest.json`,
+  icons: { icon: `${basePath}/icon.svg` },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
