@@ -1,0 +1,18 @@
+{
+  "name": "Lean In — Paintball Performance",
+  "short_name": "Lean In",
+  "description": "8-week paintball performance program: speed, first-step explosiveness, bunker transitions, and heart-rate control.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0B0B0C",
+  "theme_color": "#0B0B0C",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
