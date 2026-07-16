@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-bone font-body antialiased;
+    /* Faint diagonal grit + vignette so the charcoal never reads as flat black. */
+    background-image:
+      radial-gradient(120% 80% at 50% -10%, rgba(199, 154, 84, 0.05), transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.012) 0px,
+        rgba(255, 255, 255, 0.012) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+    min-height: 100dvh;
+  }
+
+  /* Tap targets shouldn't flash a blue box on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: rgba(219, 53, 64, 0.35);
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.tan.DEFAULT");
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .stencil {
+    @apply font-display uppercase tracking-stencil;
+  }
+
+  .eyebrow {
+    @apply font-mono uppercase tracking-widelabel text-[11px] text-bone-dim;
+  }
+
+  .card {
+    @apply rounded-card border border-ink-700 bg-ink-850 shadow-card;
+  }
+
+  /* Thumb-friendly primary button */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-display uppercase tracking-stencil
+      transition-[transform,background-color,border-color] active:scale-[0.98] select-none;
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
