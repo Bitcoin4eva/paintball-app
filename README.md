@@ -9,6 +9,26 @@ Built with **Next.js 14 (App Router) · React 18 · TypeScript · Tailwind CSS**
 All progress is saved locally on your device (no account, works offline after the
 first load).
 
+**Live app:** https://bitcoin4eva.github.io/paintball-app/ — open it on your phone
+and use **Add to Home Screen** to install it like an app.
+
+## Deploying updates
+
+The site is a static export served from the `gh-pages` branch. After changing code
+on `main`, redeploy with:
+
+```bash
+MSYS_NO_PATHCONV=1 NEXT_PUBLIC_BASE_PATH=/paintball-app npm run build
+cd out && git init -b gh-pages && touch .nojekyll && git add -A \
+  && git commit -m "Deploy" \
+  && git push -f https://github.com/Bitcoin4eva/paintball-app.git gh-pages \
+  && cd .. && rm -rf out/.git
+```
+
+(There's a ready-made GitHub Actions workflow at `.github/workflows/deploy.yml`
+locally; committing it auto-deploys on every push, but pushing workflow files
+needs `gh auth refresh -h github.com -s workflow` first.)
+
 ---
 
 ## Quick start
